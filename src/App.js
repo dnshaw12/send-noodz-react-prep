@@ -3,6 +3,7 @@ import { Route, Switch, withRouter, BrowserRouter as Router } from 'react-router
 
 import PrepMenu from './PrepMenu'
 import CurrentOrders from './CurrentOrders'
+import ManageIngredients from './ManageIngredients'
 
 
 
@@ -33,6 +34,7 @@ class App extends Component {
 	      <PrepMenu />
 	      <Switch>
 	      	<Route exact path='/' render={(props) => <CurrentOrders {...props} makePrettyDate={this.makePrettyDate}/>  } />
+	      	<Route exact path='/manage-ingredients' render={(props) => <ManageIngredients {...props}/>  } />
 	      </Switch>
 	    </main>
 	  )
