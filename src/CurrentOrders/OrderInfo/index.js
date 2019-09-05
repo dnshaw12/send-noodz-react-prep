@@ -16,6 +16,10 @@ class OrderInfo extends Component {
 		this.props.updateStatus(this.props.order._id, e.target.id)
 	}
 
+	archiveOrder = (e) => {
+		this.props.updateStatus(this.props.order._id, 'archived')
+	}
+
 	render(){
 
 		const dishes = this.props.order.dishes.map( dish => {
@@ -55,7 +59,7 @@ class OrderInfo extends Component {
 						complete.
 					</div>
 				</div>
-				<Button>archive.</Button>
+				<Button onClick={this.archiveOrder}>archive.</Button>
 
 			</Segment>
 		)

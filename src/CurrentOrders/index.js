@@ -49,11 +49,14 @@ class CurrentOrders extends Component {
 
 				const updatedOrders = this.state.orders
 
-				console.log(updatedOrders, orderId);
+				if (status !== 'archived') {
 
-				updatedOrders[updatedOrders.findIndex( order => order._id === orderId)] = parsedResponse.data
+					updatedOrders[updatedOrders.findIndex( order => order._id === orderId)] = parsedResponse.data
+				} else {
+					updatedOrders.splice(updatedOrders.findIndex( order => order._id === orderId), 1)
+				}
 
-				console.log(updatedOrders);
+
 
 				this.setState({
 					orders: updatedOrders
