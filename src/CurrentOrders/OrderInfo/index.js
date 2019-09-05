@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import { Segment } from 'semantic-ui-react';
 
+import DishInfo from './DishInfo'
+
 class OrderInfo extends Component {
 
 	render(){
+
+		const dishes = this.props.order.dishes.map( dish => {
+			return <DishInfo dish={dish} />
+		})
 
 		return(
 
 			<Segment>
 
-				<h1>order id: {this.props.order._id}</h1>
-				<h2>order status: {this.props.order.status}</h2>
+				<h3>order id: {this.props.order._id}</h3>
+
+				{dishes}
+
+				<div>order status: {this.props.order.status}</div>
 
 			</Segment>
 		)
