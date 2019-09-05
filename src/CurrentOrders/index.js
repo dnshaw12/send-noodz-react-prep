@@ -45,18 +45,15 @@ class CurrentOrders extends Component {
 
 				const parsedResponse = await updatedOrderResponse.json()
 
-
-
 				const updatedOrders = this.state.orders
 
-				if (status !== 'archived') {
 
+				// if archiving the order, remove it from state
+				if (status !== 'archived') {
 					updatedOrders[updatedOrders.findIndex( order => order._id === orderId)] = parsedResponse.data
 				} else {
 					updatedOrders.splice(updatedOrders.findIndex( order => order._id === orderId), 1)
 				}
-
-
 
 				this.setState({
 					orders: updatedOrders
@@ -83,6 +80,7 @@ class CurrentOrders extends Component {
 		return(
 
 			<Segment>
+				<h1>orders pending: {this.state.orders ? this.state.orders.length : 0}</h1>
 				{orders}
 			</Segment>
 

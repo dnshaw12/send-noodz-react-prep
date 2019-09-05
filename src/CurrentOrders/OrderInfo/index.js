@@ -5,20 +5,9 @@ import DishInfo from './DishInfo'
 
 class OrderInfo extends Component {
 
-	componentDidMount(){
+	updateStatus = (e) => this.props.updateStatus(this.props.order._id, e.target.id)
 
-		document.getElementById(this.props.order.status)
-
-	}
-
-	updateStatus = (e) => {
-
-		this.props.updateStatus(this.props.order._id, e.target.id)
-	}
-
-	archiveOrder = (e) => {
-		this.props.updateStatus(this.props.order._id, 'archived')
-	}
+	archiveOrder = (e) => this.props.updateStatus(this.props.order._id, 'archived')
 
 	render(){
 
