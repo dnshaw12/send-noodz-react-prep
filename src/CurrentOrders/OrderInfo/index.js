@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Button } from 'semantic-ui-react';
 
 import DishInfo from './DishInfo'
 
 class OrderInfo extends Component {
+
+	componentDidMount(){
+
+		document.getElementById(this.props.order.status)
+
+	}
+
+	updateStatus = (e) => {
+
+		this.props.updateStatus(this.props.order._id, e.target.id)
+	}
 
 	render(){
 
@@ -21,8 +32,30 @@ class OrderInfo extends Component {
 				{dishes}
 
 				<p>delivery instructions: {this.props.order.deliveryInstructions}</p>
-
-				<div>order status: {this.props.order.status}</div>
+				<div className='statusBar'>
+					<div 
+						id='received' 
+						className={'statusButton'  + (this.props.order.status === 'received' ? ' statusButtonActive': '')}
+						onClick={this.updateStatus}
+						>
+						received.
+					</div>
+					<div 
+						id='prepping' 
+						className={'statusButton'  + (this.props.order.status === 'prepping' ? ' statusButtonActive': '')}
+						onClick={this.updateStatus}
+						>
+						prepping.
+					</div>
+					<div 
+						id='complete' 
+						className={'statusButton'  + (this.props.order.status === 'complete' ? ' statusButtonActive': '')}
+						onClick={this.updateStatus}
+						>
+						complete.
+					</div>
+				</div>
+				<Button>archive.</Button>
 
 			</Segment>
 		)

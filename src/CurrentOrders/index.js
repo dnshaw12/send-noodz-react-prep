@@ -30,6 +30,41 @@ class CurrentOrders extends Component {
 
 	}
 
+	updateStatus = async (orderId, status) => {
+
+		try {
+
+			const updatedOrderResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/orders/' + orderId,{
+					method: 'PUT',
+		        	credentials: 'include',
+		        	body: JSON.stringify({status: status}),
+		        	headers: {
+		         	'Content-Type': 'application/json'
+	       		}
+				})
+
+				const parsedResponse = await updatedOrderResponse.json()
+
+
+
+				const updatedOrders = this.state.orders
+
+				console.log(updatedOrders, orderId);
+
+				updatedOrders[updatedOrders.findIndex( order => order._id === orderId)] = parsedResponse.data
+
+				console.log(updatedOrders);
+
+				this.setState({
+					orders: updatedOrders
+				})
+			
+		} catch(err){
+		  console.log(err);
+		}
+
+	}
+
 	render(){
 
 		let orders = <h1>CURRENT ORDERS</h1>
@@ -37,7 +72,7 @@ class CurrentOrders extends Component {
 		if (this.state.orders) {
 
 			orders = this.state.orders.map( order => {
-				return <OrderInfo makePrettyDate={this.props.makePrettyDate} order={order} />
+				return <OrderInfo updateStatus={this.updateStatus} makePrettyDate={this.props.makePrettyDate} order={order} />
 			})
 
 		}
