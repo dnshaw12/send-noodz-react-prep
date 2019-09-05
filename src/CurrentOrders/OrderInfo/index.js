@@ -16,8 +16,11 @@ class OrderInfo extends Component {
 			<Segment>
 
 				<h3>order id: {this.props.order._id}</h3>
+				<p>placed at: {this.props.makePrettyDate(this.props.order.createdDate)}</p>
 
 				{dishes}
+
+				<p>delivery instructions: {this.props.order.deliveryInstructions}</p>
 
 				<div>order status: {this.props.order.status}</div>
 

@@ -101,6 +101,7 @@ const DishInfo = (props) => {
 				<li>protein: {proteins}</li>
 				<li>sauce: {sauces}</li>
 				<li>ingredients: {normals}</li>
+				<li>special instructions: {props.dish.specialInstructions}</li>
 			</ul>
 			Done: <input type='checkbox'/>
 

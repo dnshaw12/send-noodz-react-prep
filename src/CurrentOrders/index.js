@@ -37,7 +37,7 @@ class CurrentOrders extends Component {
 		if (this.state.orders) {
 
 			orders = this.state.orders.map( order => {
-				return <OrderInfo order={order} />
+				return <OrderInfo makePrettyDate={this.props.makePrettyDate} order={order} />
 			})
 
 		}
