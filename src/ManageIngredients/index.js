@@ -145,6 +145,30 @@ class ManageIngredients extends Component {
 		this.setState({addOpen:!this.state.addOpen})
 	}
 
+	deleteIngredient = async (id) => {
+
+		try {
+
+			const deletedIngredient = await fetch(process.env.REACT_APP_BACKEND_URL + '/ingredients/' + id ,{
+					method: 'DELETE'
+				})
+
+			const parsedResponse = await deletedIngredient.json()
+
+			let newIngredientList = this.state.ingredients
+
+			newIngredientList = newIngredientList.filter( ingredient => ingredient._id !== id)
+
+			this.setState({ingredients: newIngredientList})
+
+
+			
+		} catch(err){
+		  console.log(err);
+		}
+
+	}
+
 
 	render(){
 
@@ -155,7 +179,7 @@ class ManageIngredients extends Component {
 		if (this.state.ingredients) {
 
 			ingredientList = this.state.ingredients.map( ingredient => {
-				return <IngredientInfo ingredient={ingredient} updateIngredient={this.updateIngredient}/>
+				return <IngredientInfo deleteIngredient={this.deleteIngredient} ingredient={ingredient} updateIngredient={this.updateIngredient}/>
 			})
 
 		}

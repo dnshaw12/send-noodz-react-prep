@@ -42,6 +42,7 @@ const IngredientInfo = (props) => {
 				<p>Archived:  
 					{archived}
 				</p>
+				<Button onClick={props.deleteIngredient.bind(null, props.ingredient._id)}>delete.</Button>
 			</Card.Content>
 		</Card>
 
