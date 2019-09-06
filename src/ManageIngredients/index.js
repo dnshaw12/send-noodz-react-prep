@@ -220,7 +220,7 @@ class ManageIngredients extends Component {
 			            vegan:
 			            <Form.Input fluid type='checkbox' name='vegan' onChange={this.handleChange}/>
 			            price:
-			            <Form.Input fluid icon='dollar' iconPosition='left' placeholder='price.' type='number' name='price' onChange={this.handleChange}/>
+			            <Form.Input fluid icon='dollar' iconPosition='left' placeholder='price.' type='number' step="0.01" name='price' onChange={this.handleChange}/>
 			            image:
 		               <Form.Input fluid icon='camera' iconPosition='left' type="file" name='image' onChange={this.handleChange}/>
 			            <Button fluid type='sumbit'>submit.</Button>

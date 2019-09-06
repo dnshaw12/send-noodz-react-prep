@@ -29,10 +29,10 @@ class PrepMenu extends Component {
 					</Menu.Item>
 
 					<Menu.Item
-							name='new-menu-item'
+							name='manage-menu-items'
 							onClick={this.handleClick}
 						>
-							add new menu item.
+							manage menu items.
 					</Menu.Item>
 				</Menu>
 			</Segment>
