@@ -111,6 +111,15 @@ class ManageIngredients extends Component {
 		e.preventDefault()
 		console.log(this.state);
 
+		this.toggleAdd()
+
+		e.target.name.value = ''
+		e.target.type.value = 'noodle'
+		e.target.vegitarian.checked = false
+		e.target.vegan.checked = false
+		e.target.price.value = ''
+		e.target.image.value = null
+
 		const data = new FormData();
       data.append('name', this.state.name);
       data.append('type', this.state.type);
