@@ -7,13 +7,14 @@ class AddMenuItem extends Component {
 
 		this.state = {
 			name: '',
-			noodleType: '',
+			noodle: '',
 			protein: '',
 			sauce: '',
 			baseIngredients: [],
 			basePrice: 0,
 			image: {},
-			ingredients: []
+			ingredients: [],
+			message: ''
 
 		}
 	}
@@ -58,12 +59,80 @@ class AddMenuItem extends Component {
 
 	}
 
+	handleUniqueSelection = (e) => {
+
+		console.log(e.target);
+
+		// if (this.state[e.target.name]) {
+		// 	console.log(this.state[e.target.name]);
+		// } else {
+			this.setState({[e.target.name]: e.target.id})
+		// }
+
+	}
+
+	handleChange = (e) => {
+		if(e.target.name !== 'image'){
+         this.setState({[e.target.name]: e.target.value});
+      } else {
+         // file upload
+         console.log(e.target);
+         this.setState({image: e.target.files[0]});
+      }
+	}
+
+	handelSubmit = async () => {
+
+		if (!this.state.name) {
+			this.setState({message: 'please enter a valid name'})
+		} else if (!this.state.basePrice) {
+			this.setState({message: 'please enter a valid price'})
+		} else if (!this.state.noodle) {
+			this.setState({message: 'please enter a valid noodle option'})
+		} else if (!this.state.protein) {
+			this.setState({message: 'please enter a valid protein option'})
+		} else if (!this.state.sauce) {
+			this.setState({message: 'please enter a valid sauce option'})
+		} else if (!this.state.baseIngredients.length) {
+			this.setState({message: 'please add at least one base ingredient'})
+		} else {
+
+			const data = new FormData();
+	      data.append('name', this.state.name);
+	      data.append('basePrice', this.state.basePrice);
+	      data.append('noodleType', this.state.noodle);
+	      data.append('protein', this.state.protein);
+	      data.append('sauce', this.state.sauce);
+	      data.append('baseIngredients', JSON.stringify(this.state.baseIngredients));
+	      data.append('image', this.state.image);
+
+	      const newMenuItemResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/menuItems/',{
+					method: 'POST',
+		        	credentials: 'include',
+		        	body: data,
+		        	headers: {
+		         	'enctype': 'multipart/form-data'
+	       		}
+				})
+
+	      const parsedResponse = await newMenuItemResponse.json()
+
+	      console.log(parsedResponse);
+
+	      this.props.addMenuItem(parsedResponse.data)
+
+		}
+
+
+	}
+
 	render() {
+
+		console.log('rerender');
 
 		const noodles = this.state.ingredients
 			.filter(ingredient => ingredient.type === 'noodle')
 			.map( ingredient => {
-				
 				return(
 					<Card className='ingredientCard'>
 					{
@@ -192,7 +261,8 @@ class AddMenuItem extends Component {
 
 		return(
 			<Segment>
-				<Form onSubmit={this.createIngredient}>
+				<p>{this.state.message}</p>	
+				<Form onSubmit={this.handelSubmit}>
 					name:
 	            <Form.Input fluid icon='keyboard outline' iconPosition='left' placeholder='name.' type='text' name='name' onChange={this.handleChange}/>
 

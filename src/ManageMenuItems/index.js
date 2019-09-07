@@ -44,6 +44,19 @@ class ManageMenuItems extends Component {
 		this.setState({addMenuItemActive: !this.state.addMenuItemActive})
 	}
 
+	addMenuItem = (newItem) => {
+
+		const newMenuItemList = this.state.menuItems
+
+		newMenuItemList.push(newItem)
+
+		this.setState({
+			addMenuItemActive: false,
+			menuItems: newMenuItemList
+		})
+
+	}
+
 	render(){
 
 		const menuItemsList = this.state.menuItems.map(item => {
@@ -56,7 +69,7 @@ class ManageMenuItems extends Component {
 
 				<Button onClick={this.toggleAdd}>{this.state.addMenuItemActive ? 'close.' : 'Add Menu Item' }</Button>
 
-				{ this.state.addMenuItemActive ? <AddMenuItem /> : null}
+				{ this.state.addMenuItemActive ? <AddMenuItem addMenuItem={this.addMenuItem} /> : null}
 
 				<Card.Group>
 					{menuItemsList}
