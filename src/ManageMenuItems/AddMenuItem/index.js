@@ -291,7 +291,7 @@ class AddMenuItem extends Component {
 		           	</Card.Group>
 	           	</Segment>
 
-	           	<Form.Input fluid icon='dollar' iconPosition='left' placeholder='base price.' type='text' name='basePrice' onChange={this.handleChange}/>
+	           	<Form.Input fluid icon='dollar' iconPosition='left' placeholder='base price.' type='number' step='0.01' name='basePrice' onChange={this.handleChange}/>
 	           	<Form.Input fluid icon='camera' iconPosition='left' type="file" name='image' onChange={this.handleChange}/>
 	            
 	            <Button fluid type='sumbit'>submit.</Button>

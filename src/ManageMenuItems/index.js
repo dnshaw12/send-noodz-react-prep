@@ -57,10 +57,31 @@ class ManageMenuItems extends Component {
 
 	}
 
+	handleDelete = async (id) => {
+
+		try {
+
+			const deletedMenuItem = await fetch(process.env.REACT_APP_BACKEND_URL + '/menuItems/' + id ,{
+					method: 'DELETE'
+			})
+
+			const parsedResponse = await deletedMenuItem.json()
+
+			let newMenuItemList = this.state.menuItems
+
+			newMenuItemList = newMenuItemList.filter( item => item._id !== id)
+
+			this.setState({menuItems: newMenuItemList})
+			
+		} catch(err){
+		  console.log(err);
+		}
+	}
+
 	render(){
 
 		const menuItemsList = this.state.menuItems.map(item => {
-			return <MenuItemInfo item={item} />
+			return <MenuItemInfo handleDelete={this.handleDelete} item={item} />
 		})
 
 		return(

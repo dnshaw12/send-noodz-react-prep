@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Segment } from 'semantic-ui-react';
+import { Card, Segment, Button } from 'semantic-ui-react';
 
 const MenuItemInfo = (props) => {
 
@@ -27,6 +27,7 @@ const MenuItemInfo = (props) => {
 					<li>sauce: {props.item.sauce.name}</li>
 					<li>base ingredients: {baseIngredients}</li>
 				</ul>
+				<Button onClick={props.handleDelete.bind(null, props.item._id)}>delete.</Button>
 			</Card.Content>
 		</Card>
 
