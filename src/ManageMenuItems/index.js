@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Card, Segment } from 'semantic-ui-react';
+import { Card, Segment, Button } from 'semantic-ui-react';
 
 import MenuItemInfo from './MenuItemInfo'
+import AddMenuItem from './AddMenuItem'
 
 class ManageMenuItems extends Component {
 
@@ -9,7 +10,8 @@ class ManageMenuItems extends Component {
 		super()
 
 		this.state = {
-			menuItems: []
+			menuItems: [],
+			addMenuItemActive: false
 		}
 	}
 
@@ -38,6 +40,10 @@ class ManageMenuItems extends Component {
 
 	}
 
+	toggleAdd = () => {
+		this.setState({addMenuItemActive: !this.state.addMenuItemActive})
+	}
+
 	render(){
 
 		const menuItemsList = this.state.menuItems.map(item => {
@@ -47,6 +53,10 @@ class ManageMenuItems extends Component {
 		return(
 			<Segment>
 				<h1>Manage Menu Items</h1>
+
+				<Button onClick={this.toggleAdd}>{this.state.addMenuItemActive ? 'close.' : 'Add Menu Item' }</Button>
+
+				{ this.state.addMenuItemActive ? <AddMenuItem /> : null}
 
 				<Card.Group>
 					{menuItemsList}
