@@ -101,7 +101,11 @@ class AddMenuItem extends Component {
 	      data.append('noodleType', this.state.noodle);
 	      data.append('protein', this.state.protein);
 	      data.append('sauce', this.state.sauce);
-	      data.append('baseIngredients', JSON.stringify(this.state.baseIngredients));
+
+	      if (this.state.baseIngredients.length) {
+
+	      	data.append('baseIngredients', JSON.stringify(this.state.baseIngredients));
+	      }
 	      data.append('image', this.state.image);
 
 	      const newMenuItemResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/menuItems/',{
