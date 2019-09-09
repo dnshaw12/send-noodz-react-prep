@@ -94,8 +94,6 @@ class ManageIngredients extends Component {
 
 	handleChange = (e) => {
 
-		console.log(this.state);
-
 		if (e.target.name === 'vegitarian' || e.target.name === 'vegan') {
 				this.setState({[e.target.name]: e.target.checked})
 		} else if (e.target.name === 'image') {
@@ -109,7 +107,6 @@ class ManageIngredients extends Component {
 
 	createIngredient = async (e) => {
 		e.preventDefault()
-		console.log(this.state);
 
 		this.toggleAdd()
 

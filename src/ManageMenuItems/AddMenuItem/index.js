@@ -27,10 +27,8 @@ class AddMenuItem extends Component {
 
 			const parsedResponse = await ingredientsResponse.json()
 
-			console.log(parsedResponse);
-
 			const ingredientList = parsedResponse.data.filter( ingredient => {
-				return ingredient.name !== 'custom'
+				return ingredient
 			}).sort(this.sortByType)
 
 			this.setState({
