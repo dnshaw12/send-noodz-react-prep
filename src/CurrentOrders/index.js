@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Segment } from 'semantic-ui-react';
 import OrderInfo from './OrderInfo'
+import socketIOClient from 'socket.io-client'
+
+const socket = socketIOClient(process.env.REACT_APP_BACKEND_URL)
 
 class CurrentOrders extends Component {
 
@@ -23,6 +26,17 @@ class CurrentOrders extends Component {
 		const parsedResponse = await ordersResponse.json()
 
 		console.log(parsedResponse);
+
+		socket.on('new order', data => {
+			
+			const updatedOrders = this.state.orders
+
+			updatedOrders.push(data)
+
+			this.setState({
+				orders: updatedOrders
+			})
+		})
 
 		this.setState({
 			orders: parsedResponse.data
