@@ -20,7 +20,6 @@ class PrepMenu extends Component {
 	componentDidMount(){
 
 		socket.on('new order', data => {
-			console.log('new order', this.state.newOrders);
 			this.setState({
 				newOrders: this.state.newOrders + 1
 			})

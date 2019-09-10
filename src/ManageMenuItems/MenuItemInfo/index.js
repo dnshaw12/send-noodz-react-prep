@@ -4,8 +4,6 @@ import { Card, Segment, Button } from 'semantic-ui-react';
 const MenuItemInfo = (props) => {
 
 	const baseIngredients = props.item.baseIngredients.reduce( (acc, ingredient, idx) => {
-		
-		console.log(idx);
 
 		if (idx === 0) {
 			return ingredient.name

@@ -43,8 +43,6 @@ class AddMenuItem extends Component {
 
 	handleBaseSelection = (e) => {
 
-		console.log(e.target.id, e.target.checked);
-
 		let newBaseIngredients = this.state.baseIngredients
 
 		if (e.target.checked) {
@@ -59,13 +57,7 @@ class AddMenuItem extends Component {
 
 	handleUniqueSelection = (e) => {
 
-		console.log(e.target);
-
-		// if (this.state[e.target.name]) {
-		// 	console.log(this.state[e.target.name]);
-		// } else {
-			this.setState({[e.target.name]: e.target.id})
-		// }
+		this.setState({[e.target.name]: e.target.id})
 
 	}
 
@@ -74,7 +66,6 @@ class AddMenuItem extends Component {
          this.setState({[e.target.name]: e.target.value});
       } else {
          // file upload
-         console.log(e.target);
          this.setState({image: e.target.files[0]});
       }
 	}
@@ -119,8 +110,6 @@ class AddMenuItem extends Component {
 
 	      const parsedResponse = await newMenuItemResponse.json()
 
-	      console.log(parsedResponse);
-
 	      this.props.addMenuItem(parsedResponse.data)
 
 		}
@@ -129,8 +118,6 @@ class AddMenuItem extends Component {
 	}
 
 	render() {
-
-		console.log('rerender');
 
 		const noodles = this.state.ingredients
 			.filter(ingredient => ingredient.type === 'noodle')
