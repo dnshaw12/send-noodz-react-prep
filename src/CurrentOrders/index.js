@@ -16,16 +16,10 @@ class CurrentOrders extends Component {
 	}
 
 	componentDidMount = async () => {
-
-		console.log('CurrentOrders mounted',process.env);
 		
 		const ordersResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/orders/active')
 
-		console.log(ordersResponse);
-
 		const parsedResponse = await ordersResponse.json()
-
-		console.log(parsedResponse);
 
 		socket.on('new order', data => {
 			

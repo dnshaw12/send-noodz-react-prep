@@ -28,8 +28,6 @@ class ManageIngredients extends Component {
 
 			const parsedResponse = await ingredientsResponse.json()
 
-			console.log(parsedResponse);
-
 			const ingredientList = parsedResponse.data.filter( ingredient => {
 				return ingredient.name !== 'custom'
 			}).sort(this.sortByType)
@@ -65,8 +63,6 @@ class ManageIngredients extends Component {
 	}
 
 	updateIngredient = async (id, e) => {
-		
-		console.log(e.target.checked, e.target.id, id);
 
 		const updatedIngredientResponse = await fetch(process.env.REACT_APP_BACKEND_URL + '/ingredients/' + id,{
 					method: 'PUT',
@@ -78,8 +74,6 @@ class ManageIngredients extends Component {
 				})
 
 		const parsedResponse = await updatedIngredientResponse.json()
-
-		console.log(parsedResponse);
 
 		const newIngredientList = this.state.ingredients
 
@@ -177,8 +171,6 @@ class ManageIngredients extends Component {
 
 
 	render(){
-
-		console.log(this.state);
 
 		let ingredientList = <h1>ManageIngredients</h1>
 

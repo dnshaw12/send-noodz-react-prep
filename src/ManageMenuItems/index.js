@@ -23,8 +23,6 @@ class ManageMenuItems extends Component {
 
 			const parsedResponse = await menuItemsResponse.json()
 
-			console.log(parsedResponse);
-
 			const menuItemsList = parsedResponse.data.filter( item => {
 				return item.name !== 'byon'
 			})
