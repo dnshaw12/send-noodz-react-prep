@@ -87,7 +87,7 @@ class CurrentOrders extends Component {
 
 		return(
 
-			<Segment>
+			<Segment className='mainSegment'>
 				<h1>orders pending: {this.state.orders ? this.state.orders.length : 0}</h1>
 				{orders}
 			</Segment>

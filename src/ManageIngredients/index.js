@@ -183,8 +183,9 @@ class ManageIngredients extends Component {
 		}
 
 		return(
-			<Segment>
+			<Segment className='mainSegment'>
 				<Segment>
+					<h1>Manage Ingredients</h1>
 					<Button 
 						onClick={this.toggleAdd}>
 

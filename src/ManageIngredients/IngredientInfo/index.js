@@ -34,7 +34,7 @@ const IngredientInfo = (props) => {
 
 		<Card>
 			<Card.Content>
-				<Card.Header>{props.ingredient.name}</Card.Header>
+				<h2>{props.ingredient.name}</h2>
 				<p>type: {props.ingredient.type}</p>
 				<p>In Stock: 
 					{inStock}

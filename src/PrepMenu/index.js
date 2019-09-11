@@ -20,6 +20,7 @@ class PrepMenu extends Component {
 	componentDidMount(){
 
 		socket.on('new order', data => {
+			console.log('new order io hit');
 			this.setState({
 				newOrders: this.state.newOrders + 1
 			})
@@ -43,7 +44,7 @@ class PrepMenu extends Component {
 		return(
 
 
-			<Segment>
+			<Segment className="prepMenu">
 				<h1>prep some noodz.</h1>
 				<Menu>
 					<Menu.Item

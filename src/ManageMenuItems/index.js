@@ -83,12 +83,16 @@ class ManageMenuItems extends Component {
 		})
 
 		return(
-			<Segment>
-				<h1>Manage Menu Items</h1>
+			<Segment className='mainSegment'>
 
-				<Button onClick={this.toggleAdd}>{this.state.addMenuItemActive ? 'close.' : 'Add Menu Item' }</Button>
+				<Segment>
+					<h1>Manage Menu Items</h1>
 
-				{ this.state.addMenuItemActive ? <AddMenuItem addMenuItem={this.addMenuItem} /> : null}
+					<Button onClick={this.toggleAdd}>{this.state.addMenuItemActive ? 'close.' : 'Add Menu Item' }</Button>
+
+					{ this.state.addMenuItemActive ? <AddMenuItem addMenuItem={this.addMenuItem} /> : null}
+
+				</Segment>
 
 				<Card.Group>
 					{menuItemsList}

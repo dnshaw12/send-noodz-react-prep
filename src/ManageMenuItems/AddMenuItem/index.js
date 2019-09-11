@@ -249,7 +249,7 @@ class AddMenuItem extends Component {
 
 
 		return(
-			<Segment>
+			<div>
 				<p>{this.state.message}</p>	
 				<Form onSubmit={this.handelSubmit}>
 					name:
@@ -285,7 +285,7 @@ class AddMenuItem extends Component {
 	            
 	            <Button fluid type='sumbit'>submit.</Button>
 	         </Form>	
-         </Segment>
+         </div>
 		)
 
 	}
